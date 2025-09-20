@@ -1,0 +1,10 @@
+torch
+transformers
+pandas
+numpy
+requests
+finbert-embedding
+fastapi
+uvicorn
+streamlit
+reportlab
