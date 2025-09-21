@@ -1,0 +1,10 @@
+﻿factors:
+  sentiment: 0.3
+  momentum: 0.2
+  sma: 0.2
+  rsi: 0.1
+  macd: 0.2
+
+thresholds:
+  buy: 0.6
+  sell: 0.4

@@ -1,0 +1,2 @@
+timestamp,symbol,side,qty,status,confidence,entry_price,live_price,pnl
+2025-09-20 14:08:13,TSLA,buy,10,simulated,0.639,426.07000732421875,426.07000732421875,0.0
