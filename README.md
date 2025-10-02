@@ -75,3 +75,20 @@ streamlit run src/streamlit_app.py
 
 ## Example
 ![Dashboard Screenshot](example_dashboard.png)
+
+## Key Features
+- Multi-Agent architecture (data, sentiment, strategy, reporting)
+- Real-time stock data via yfinance
+- Technical indicators: RSI, SMA, MACD, Bollinger Bands, ATR
+- Strategy signals (momentum, mean reversion, sentiment-driven)
+- Backtesting with Sharpe Ratio, Max Drawdown, equity curve
+- Streamlit Dashboard for visualization
+- CI/CD with pytest
+
+## Run Dashboard
+\\\ash
+streamlit run src/streamlit_app.py
+\\\
+
+## Example
+![Dashboard Screenshot](example_dashboard.png)
