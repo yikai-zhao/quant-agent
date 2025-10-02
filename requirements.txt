@@ -8,3 +8,6 @@ fastapi
 uvicorn
 streamlit
 reportlab
+streamlit
+pytest
+pandas
