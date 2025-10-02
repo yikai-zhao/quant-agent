@@ -18,10 +18,12 @@ class Backtester:
             self.history.append(("SELL", price, pnl))
         self.equity_curve.append(self.balance)
 
-    def sharpe_ratio(self, returns, rf=0.0):
-        if returns.std() == 0: return 0
-        excess = returns - rf
-        return np.sqrt(252) * excess.mean() / excess.std()
+    def sharpe_ratio(self, returns):
+        return np.sqrt(252) * returns.mean() / returns.std() if returns.std() else None
+
+    def sortino_ratio(self, returns):
+        downside = returns[returns < 0]
+        return np.sqrt(252) * returns.mean() / downside.std() if downside.std() else None
 
     def max_drawdown(self):
         if not self.equity_curve: return None
@@ -30,15 +32,15 @@ class Backtester:
         dd = (curve - peak) / peak
         return dd.min()
 
-    def calmar_ratio(self, returns):
-        max_dd = abs(self.max_drawdown()) if self.max_drawdown() else 1
-        if max_dd == 0: return None
-        return returns.mean() * 252 / max_dd
+    def profit_factor(self):
+        gains = sum([h[2] for h in self.history if h[0] == "SELL" and h[2] > 0])
+        losses = abs(sum([h[2] for h in self.history if h[0] == "SELL" and h[2] < 0]))
+        return gains / losses if losses > 0 else None
 
-    def win_rate(self):
-        wins = [h for h in self.history if h[0] == "SELL" and h[2] > 0]
-        trades = [h for h in self.history if h[0] == "SELL"]
-        return len(wins) / len(trades) if trades else 0
+    def cagr(self, years=0.5):
+        if not self.equity_curve: return None
+        final = self.equity_curve[-1]
+        return (final / self.equity_curve[0]) ** (1/years) - 1 if years else None
 
     def summary(self):
         returns = np.diff(self.equity_curve) / self.equity_curve[:-1] if len(self.equity_curve) > 1 else np.array([0])
@@ -46,7 +48,8 @@ class Backtester:
             "final_balance": self.balance,
             "trades": len(self.history),
             "sharpe_ratio": float(self.sharpe_ratio(returns)) if len(returns) > 5 else None,
+            "sortino_ratio": float(self.sortino_ratio(returns)) if len(returns) > 5 else None,
             "max_drawdown": float(self.max_drawdown()) if self.equity_curve else None,
-            "calmar_ratio": float(self.calmar_ratio(returns)) if len(returns) > 5 else None,
-            "win_rate": float(self.win_rate())
+            "profit_factor": float(self.profit_factor()) if self.history else None,
+            "cagr": float(self.cagr()) if self.equity_curve else None
         }
