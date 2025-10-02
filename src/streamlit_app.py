@@ -46,7 +46,6 @@ for ticker in [t.strip() for t in tickers]:
 
     # KPI metrics in wide columns
     col1, col2, col3, col4 = st.columns(4)
-    col1.metric("Final Balance", f"\")
     col2.metric("Sharpe Ratio", f"{summary['sharpe_ratio']:.2f}" if summary["sharpe_ratio"] else "N/A")
     col3.metric("Max Drawdown", f"{summary['max_drawdown']:.2%}" if summary["max_drawdown"] else "N/A")
     col4.metric("Win Rate", f"{summary['win_rate']:.2%}")
@@ -55,3 +54,14 @@ for ticker in [t.strip() for t in tickers]:
     if bt.equity_curve:
         equity_curve = pd.Series(bt.equity_curve, index=signals.index[:len(bt.equity_curve)])
         st.line_chart(pd.DataFrame({"Equity Curve": equity_curve}))
+    # KPI metrics in wide columns
+    col1, col2, col3, col4 = st.columns(4)
+    col2.metric("Sharpe Ratio", f"{summary['sharpe_ratio']:.2f}" if summary["sharpe_ratio"] else "N/A")
+    col3.metric("Max Drawdown", f"{summary['max_drawdown']:.2%}" if summary["max_drawdown"] else "N/A")
+    col4.metric("Win Rate", f"{summary['win_rate']:.2%}")
+    # KPI metrics in wide columns
+    col1, col2, col3, col4 = st.columns(4)
+    col1.metric("Final Balance", f"${summary['final_balance']:.2f}")
+    col2.metric("Sharpe Ratio", f"{summary['sharpe_ratio']:.2f}" if summary["sharpe_ratio"] else "N/A")
+    col3.metric("Max Drawdown", f"{summary['max_drawdown']:.2%}" if summary["max_drawdown"] else "N/A")
+    col4.metric("Win Rate", f"{summary['win_rate']:.2%}")
