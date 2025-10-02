@@ -45,3 +45,16 @@ python src/orchestrator.py
 
 ## License
 MIT License
+
+## Dashboard and Backtesting
+
+Run the trading dashboard with:
+\\\ash
+streamlit run src/streamlit_app.py
+\\\
+
+Features:
+- Real-time stock data via yfinance
+- Technical indicators (RSI, SMA, MACD)
+- Trading signals (MACD crossover strategy)
+- Backtesting engine with equity curve and performance summary
