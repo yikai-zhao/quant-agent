@@ -92,3 +92,16 @@ streamlit run src/streamlit_app.py
 
 ## Example
 ![Dashboard Screenshot](example_dashboard.png)
+
+## Features
+- Modular strategy design (MACD, SMA, RSI, Bollinger)
+- Advanced risk metrics (Sharpe, Sortino, Profit Factor, CAGR, Max Drawdown)
+- Multi-asset support (Stocks, Crypto placeholder)
+- Streamlit dashboard with KPIs and charts
+- Automated report generation (Markdown)
+
+## Demo
+![Dashboard Screenshot](example_dashboard.png)
+
+## Architecture
+Data ? Strategy ? Backtester ? Risk Metrics ? Dashboard ? Report
